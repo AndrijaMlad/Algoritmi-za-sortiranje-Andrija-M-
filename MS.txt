@@ -1,0 +1,95 @@
+///Merge Sort
+ 
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+using namespace chrono;
+ 
+#define int long long
+ 
+mt19937_64 rng(time(0));
+ 
+const int maxn=1e5+10;
+const int mod=998244353;
+const int logn=20;
+ 
+void com(vector<int>& a,int L,int mid,int R)
+{
+    int nL=mid-L+1;
+    int nR=R-mid;
+    vector<int>aL(nL);
+    vector<int>aR(nR);
+    for(int i=0;i<nL;i++)
+    {
+        aL[i]=a[L+i];
+    }
+    for(int i=0;i<nR;i++)
+    {
+        aR[i]=a[i+mid+1];
+    }
+    int i=0;
+    int j=0;
+    int idx=L;
+    ///merge back sorted
+    while(i<nL && j<nR)
+    {
+        if(aL[i]<=aR[j])
+        {
+            a[idx]=aL[i];
+            i++;
+        }
+        else
+        {
+            a[idx]=aR[j];
+            j++;
+        }
+        idx++;
+    }
+    while(i<nL)
+    {
+        a[idx]=aL[i];
+        i++;
+        idx++;
+    }
+    while(j<nR)
+    {
+        a[idx]=aR[j];
+        j++;
+        idx++;
+    }
+}
+ 
+void mergeS(vector<int>&a,int L,int R)
+{
+    if(L>=R)
+    {
+        return ;
+    }
+    int mid=(L+R)/2;
+    mergeS(a,L,mid);
+    mergeS(a,mid+1,R);
+    com(a,L,mid,R);
+}
+ 
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    vector<int>a(maxn);
+    for(int i=0;i<maxn;i++)
+    {
+        a[i]=rng();
+    }
+    auto start = high_resolution_clock::now();
+    mergeS(a,0,maxn-1);
+    auto stop = high_resolution_clock::now();
+    for(int i=0;i<maxn;i++)
+    {
+        cout<<a[i]<< " ";
+    }
+    cout<<endl;
+    auto duration = duration_cast<microseconds>(stop - start);
+    cout << "Time taken: " << duration.count() << " µs\n";
+    return 0;
+}
