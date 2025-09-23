@@ -1,5 +1,6 @@
 ///Insertion Sort
- 
+///zatoa sto imame vgnezden for => O(n²)
+
 #include <bits/stdc++.h>
  
 using namespace std;
@@ -43,4 +44,5 @@ signed main()
     auto duration = duration_cast<microseconds>(stop - start);
     cout << "Time taken: " << duration.count() << " µs\n";
     return 0;
+
 }
