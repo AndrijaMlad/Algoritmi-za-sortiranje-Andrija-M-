@@ -1,5 +1,10 @@
 ///Merge Sort
- 
+/*
+Nie sekoj pat go delime drvoto na 2 dela
+ova go pravime log(n) pati i pri sekoja vakava operacija trosime uste O(n) za da gi sortirame pod nizite.
+Poradi ova vremeto e O(nlogn)
+*/
+
 #include <bits/stdc++.h>
  
 using namespace std;
@@ -92,4 +97,5 @@ signed main()
     auto duration = duration_cast<microseconds>(stop - start);
     cout << "Time taken: " << duration.count() << " µs\n";
     return 0;
+
 }
